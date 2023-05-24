@@ -30,6 +30,8 @@ namespace MS.AFORO255.Deposit.Controllers
             _eventBus.SendCommand(new TransactionCreateCommand(transaction.Id, transaction.Amount, transaction.Type,
                    transaction.CreationDate, transaction.AccountId));
 
+            _eventBus.SendCommand(new NotificationCreateCommand(transaction.Id, transaction.Amount, transaction.Type,
+                    "Message default", "Address default", transaction.AccountId));
 
             return Ok(transaction);
         }
